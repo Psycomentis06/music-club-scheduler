@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+Session Coach
+{% endblock %}
+
+{% block body %}
+{% if seance == null %}
+<div class="ui negative message error-coach-message">
+    <div class="header">
+        Coach not found!
+    </div>
+    <p>
+        Sorry you can't edit a session that it dosen't exist please check the right
+        session id
+    </p>
+</div>
+{% else %}
+<div class="register-form-container">
+    {{form(form)}}
+</div>
+
+{% endif %}
+
+
+{% endblock %}

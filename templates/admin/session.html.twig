@@ -1,0 +1,88 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+Session
+{% endblock %}
+
+{% block body %}
+<h1 class="crud-table-title">Session planning table </h1>
+
+{% for msg in app.flashes('notice') %}
+<div class="ui success message">
+    <div class="header">
+        Action succeeded
+    </div>
+    <p>
+        {{msg}}
+    </p>
+</div>
+{% endfor %}
+
+<div class="center-add-btn">
+    <center>
+        <a href="{{path('admin_new_sessions')}}" class="ui button yellow fluid">
+            Add Session
+        </a>
+    </center>
+</div>
+<table class="ui striped green table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Coach Name</th>
+            <th>Activity</th>
+            <th>Date</th>
+            <th>Session start</th>
+            <th>Date end</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if sessions|length == 0 %}
+        <tr>
+            <th rowspan="6" colspan="5" class="table-no-data-found">No Data Found For users</th>
+        </tr>
+        {% else %}
+        {% for se in sessions %}
+        <tr>
+            <th>{{se.id}}</th>
+            <th>{{se.codeCo}}</th>
+            <th>{{se.codaAct}}</th>
+            <th>{{se.DateSe|date}}</th>
+            <th>{{se.heureDebut|date}}</th>
+            <th>{{se.heureFin|date}}</th>
+            <th>
+                <a class="ui button green" href="{{path('admin_session_edit', {'id': se.id})}}">
+                    Edit&nbsp;
+                    <i class="edit icon"></i>
+                </a>
+                <button class="ui button red" id="{{se.id}}" onclick="confirmDelete(id);">
+                    Delete&nbsp;
+                    <i class="trash icon"></i>
+                </button>
+            </th>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    function confirmDelete(actId) {
+        const host = window.location.host;
+        const protocole = window.location.protocol
+
+        let confirm = window.confirm('You are going to delete Session number ' + actId + ' from database \n Are you sure?');
+        if (confirm == true) {
+            window.location.href = protocole + '//' + host + '/admin/session/remove/' + actId;
+        }
+        else {
+            return 0;
+        }
+
+    }
+</script>
+{% endblock %}

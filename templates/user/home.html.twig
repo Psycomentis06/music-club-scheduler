@@ -1,0 +1,91 @@
+{% extends "base.html.twig" %}
+{% block title %}
+    Profile
+{% endblock %}
+
+
+
+{% block body %}
+
+    {% for msg in app.flashes('notice') %}
+<div class="ui success message">
+        <div class="header">
+            Action succeeded
+        </div>
+        <p>
+        {{msg}}
+        </p>
+    </div>
+{% endfor %}
+
+    {% if app.user.roles.0 == 'ROLE_ADMIN' %}
+        <center><h1>Hello Admin " {{app.user.firstName ~ ' ' ~ app.user.lastName}} "</h1></center>
+        <br>
+    {% else %}
+        <center><h1>Hello Mr(s) {{app.user.firstName ~ ' ' ~ app.user.lastName}} this is your account data</h1></center>
+        <br>
+    {% endif %}
+
+
+    <div class="ui two column grid">
+    <div class="column">
+        <div class="user-details-container">
+            <div class="ui two column grid">
+                <div class="column">
+                    User ID:
+                </div>
+                <div class="column">
+                    {{app.user.id}}
+                </div>
+            </div>
+            <div class="ui two column grid">
+                <div class="column">
+                    User First Name:
+                </div>
+                <div class="column">
+                    {{app.user.firstName}}
+                </div>
+            </div>
+            <div class="ui two column grid">
+                <div class="column">
+                    User Last Name:
+                </div>
+                <div class="column">
+                    {{app.user.lastName}}
+                </div>
+            </div>
+            <div class="ui two column grid">
+                <div class="column">
+                    User Age:
+                </div>
+                <div class="column">
+                    {{app.user.age}}
+                </div>
+            </div>
+            <div class="ui two column grid">
+                <div class="column">
+                    User Email:
+                </div>
+                <div class="column">
+                    {{app.user.email}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column"></div>
+</div>
+
+  <br>
+&nbsp;&nbsp;
+<a class="return-link" href="{{path('users_list')}}">
+    View Users list
+    &nbsp;
+    <i class="external icon"></i>
+</a>
+&nbsp;&nbsp;
+<a class="return-link" href="{{path('user_edit')}}">
+    Edit Account
+    &nbsp;
+    <i class="edit icon"></i>
+</a>
+{% endblock %}

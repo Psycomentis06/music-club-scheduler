@@ -1,0 +1,177 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+Cluby
+{% endblock %}
+
+{% block body %}
+
+{% for msg in app.flashes('notice') %}
+<div class="ui success message">
+        <div class="header">
+            Registration Valid
+        </div>
+        <p>
+        {{msg}}
+        </p>
+    </div>
+{% endfor %}
+<div class="ui vertically divided grid">
+  <div class="row">
+    <!-- Swiper -->
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="{{asset('images/boy.jpg')}}" alt="Boy with Guitar">
+        </div>
+        <div class="swiper-slide">
+          <img src="{{asset('images/audiance.jpg')}}" alt="Boy with Guitar">
+        </div>
+        <div class="swiper-slide">
+          <img src="{{asset('images/group.jpg')}}" alt="Boy with Guitar">
+        </div>
+        <div class="swiper-slide">
+          <img src="{{asset('images/party.jpg')}}" alt="Boy with Guitar">
+        </div>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+      <!-- Add Arrows -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+  <div class="three column row">
+    <!-- Location -->
+    <div class="five wide column home-place-card">
+      <!-- Place Card -->
+      <div class="ui card">
+        <div class="content">
+          <div class="header">Cluby Music Academy</div>
+          <div class="meta">12h/7d</div>
+          <div class="description">
+            <p>This is a well known Music club with a lot of festivals participation and hight quality coaches
+              who teaches all peaople and genders from 4 year old kid to a grandpa or grandma.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="six wide column">
+      <!-- Statics -->
+      <h1>Cluby Artists Features and Stats</h1>
+      <div class="ui statistics">
+        <div class="red statistic">
+          <div class="value">
+            2,5K
+          </div>
+          <div class="label">
+            People learn each year
+          </div>
+        </div>
+        <div class="purple statistic">
+          <div class="value">
+            55
+          </div>
+          <div class="label">
+            Coach
+          </div>
+        </div>
+        <div class="pink statistic">
+          <div class="value">
+            35
+          </div>
+          <div class="label">
+            Instrmental tool to Learn
+          </div>
+        </div>
+        <div class="green statistic">
+          <div class="value">
+            +12
+          </div>
+          <div class="label">
+            festival each year
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="three wide column">
+      <a href="{{path('app_register')}}">
+      <div class="ui animated fade massive button inverted orange home-register-btn">
+          <div class="visible content">
+            Create Account
+          </div>
+          <div class="hidden content">
+            Schedule sessions
+          </div>
+      </div>
+    </a>
+    </div>
+  </div>
+  <div class="one column row">
+    <div class="column">
+      <h1 class="findus-text"> Find Us Everywhere</h1>
+    </div>
+
+  </div>
+  <div class="one column row">
+    <div class="column center-findus-btns">
+      <button class="ui facebook button" data-tooltip="Cluby" data-inverted="">
+        <i class="facebook icon"></i>
+        Facebook
+      </button>
+      <button class="ui twitter button" data-tooltip="Cluby" data-inverted="">
+        <i class="twitter icon"></i>
+        Twitter
+      </button>
+      <button class="ui google plus button" data-tooltip="Cluby_C" data-inverted="">
+        <i class="google plus icon"></i>
+        Google Plus
+      </button>
+      <button class="ui vk button" data-tooltip="Cluby_2020" data-inverted="">
+        <i class="vk icon"></i>
+        VK
+      </button>
+      <button class="ui linkedin button" data-tooltip="Cluby_C" data-inverted="">
+        <i class="linkedin icon"></i>
+        LinkedIn
+      </button>
+      <button class="ui instagram button" data-tooltip="official_cluby" data-inverted="">
+        <i class="instagram icon"></i>
+        Instagram
+      </button>
+      <button class="ui youtube button" data-tooltip="ClubyArt" data-inverted="">
+        <i class="youtube icon"></i>
+        YouTube
+      </button>
+    </div>
+
+  </div>
+</div>
+{% block javascripts %}
+<script>
+  // Swiper js configuration
+  $(document).ready(function () {
+
+    var swiper = new Swiper('.swiper-container', {
+      spaceBetween: 30,
+      centeredSlides: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+
+  });
+
+</script>
+{% endblock %}
+
+{% endblock %}

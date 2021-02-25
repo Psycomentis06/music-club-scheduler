@@ -1,0 +1,41 @@
+.signin-text {
+    font-size: 24pt;
+    text-align: center;
+    animation-name: coloredText;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.register-form-container, .act-form-container {
+    width: 50%;
+    margin: auto;
+}
+
+.register-title {
+    font-size: 24pt;
+    text-align: center;
+    animation-name: coloredText;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes coloredText {
+    0% {
+        color: #2c3e50;
+    }
+    20% {
+        color: #e74c3c;
+    }
+    40% {
+        color: #1abc9c;
+    }
+    60% {
+        color: #3498db;
+    }
+    80% {
+        color: #e67e22;
+    }
+    100% {
+        color: #34495e;
+    }
+}

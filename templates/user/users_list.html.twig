@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+Users
+{% endblock %}
+
+{% block body %}
+<center>
+    <h1>Cluby Users</h1>
+</center>
+<br><br><br>
+<div class="user-container">
+    <div class="ui one column grid">
+        <div class="column">
+            <div class="ui cards">
+                {% for user in users %}
+                <div class="card stackable {% if user.roles.0 == 'ROLE_ADMIN' %} orange {% else %} blue {% endif %}">
+                    <div class="image">
+                        <img src="{{ random([asset('images/user/user-female-2.png'), asset('images/user/user-female-icon.png'), asset('images/user/user-male-icon.png')]) }}"
+                            alt="User image">
+                    </div>
+                    <div class="content">
+                        <a class="header">
+                            
+                                {{user.firstName ~ ' ' ~ user.lastName}}
+                                {% if user.roles.0 == 'ROLE_ADMIN' %}
+                                <span data-tooltip="Admin" data-inverted="">
+                                    <i class="star icon"></i>
+                                </span>
+                                    
+                                {% endif %}
+                            </a>
+                        <div class="meta">
+                            <span class="date">Joined in 2020</span>
+                        </div>
+                        <div class="description">
+                            {{user.firstName ~ ' ' ~ user.lastName}} is an art director living in New York.
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a>
+                            <i class="mail icon"></i>
+                            {% if user.roles.0 == 'ROLE_ADMIN' %}
+                                Contact@cluby_admin.com
+                            {% else %}
+                                {{user.email}}
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

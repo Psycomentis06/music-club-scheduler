@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+Edit Coach
+{% endblock %}
+
+{% block body %}
+{% if coach == null %}
+<div class="ui negative message error-coach-message">
+    <div class="header">
+        Coach not found!
+    </div>
+    <p>
+        Sorry you can't edit a coach that it dosen't exist please check the right
+        coach id
+    </p>
+</div>
+{% else %}
+<div class="register-form-container">
+    {{form(form)}}
+</div>
+
+{% endif %}
+
+
+{% endblock %}

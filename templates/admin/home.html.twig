@@ -1,0 +1,91 @@
+{% extends "base.html.twig" %}
+{% block title %}
+Admin Home
+{% endblock %}
+
+{% block body %}
+<h1 class="crud-table-title">Users registred on Cluby</h1>
+
+{% for msg in app.flashes('notice') %}
+<div class="ui success message">
+        <div class="header">
+            Action succeeded
+        </div>
+        <p>
+        {{msg}}
+        </p>
+    </div>
+{% endfor %}
+
+<table class="ui striped orange table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if users|length == 0 %}
+    <tr>
+        <th rowspan="6" colspan="5">No Data Found For users</th>
+    </tr>
+    {% else %}
+        {% for user in users %}
+        <tr>
+            <th>{{user.id}}</th>
+            <th>{{user.firstName}}</th>
+            <th>{{user.lastName}}</th>
+            <th>{{user.age}}</th>
+            <th>{{user.email}}</th>
+            <th>
+                {% if user.roles.0 == 'ROLE_ADMIN' %}
+                <div class="user-table-icon-container" data-tooltip="Admin user" data-inverted="">
+                    <i class=" star icon user-table-icon" ></i>
+                </div>
+                {% else %}
+                <div class="user-table-icon-container" data-tooltip="Normal user" data-inverted="">
+                    <i class=" user icon user-table-icon"></i>
+                </div>
+                {% endif %}
+            </th>
+            <th>
+                <div class="three ui buttons">
+                    <a class="ui button blue" href="{{path('admin_view_user', {'id': user.id})}}">
+                        View&nbsp;
+                        <i class="external alternate icon"></i>
+                    </a>
+                    <button class="ui button red" id="{{user.id}}" onclick="confirmDelete(id);">
+                        Delete&nbsp;
+                        <i class="trash icon"></i>
+                    </button>
+                  </div>
+            </th>
+        </tr>
+        {% endfor %}
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function confirmDelete(userId) {
+            const host = window.location.host;
+            const protocole = window.location.protocol
+
+            let confirm = window.confirm('You are going to delete user number '+userId+' from database \n Are you sure?');
+            if (confirm == true) {
+                window.location.href = protocole+'//'+host+'/admin/user/remove/'+userId;
+            }
+            else {
+                return 0;
+            }
+            
+        }
+    </script>
+{% endblock %}

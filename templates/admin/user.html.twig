@@ -1,0 +1,67 @@
+{% extends "base.html.twig" %}
+{% block title %}
+User Profile
+{% endblock %}
+
+{% block body %}
+
+<div class="ui two column grid">
+    <div class="column">
+        <div class="user-details-container">
+            <div class="ui two column grid">
+                <div class="column">
+                    User ID:
+                </div>
+                <div class="column">
+                    {{data.id}}
+                </div>
+            </div>
+            <div class="ui two column grid">
+                <div class="column">
+                    User First Name:
+                </div>
+                <div class="column">
+                    {{data.firstName}}
+                </div>
+            </div>
+            <div class="ui two column grid">
+                <div class="column">
+                    User Last Name:
+                </div>
+                <div class="column">
+                    {{data.lastName}}
+                </div>
+            </div>
+            <div class="ui two column grid">
+                <div class="column">
+                    User Age:
+                </div>
+                <div class="column">
+                    {{data.age}}
+                </div>
+            </div>
+            <div class="ui two column grid">
+                <div class="column">
+                    User Email:
+                </div>
+                <div class="column">
+                    {{data.email}}
+                </div>
+            </div>
+            <div class="ui two column grid">
+                <div class="column">
+                    User Role:
+                </div>
+                <div class="column">
+                    {{data.roles.0}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column"></div>
+</div>
+<a class="return-link" href="{{path('admin_home')}}">
+    <i class="arrow left icon"></i>
+    Return to users Page
+</a>
+{% endblock %}

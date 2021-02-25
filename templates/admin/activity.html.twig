@@ -1,0 +1,75 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Activties
+{% endblock %}
+
+{% block body %}
+    <h1 class="crud-table-title">Activities registred on Cluby</h1>
+
+    {% for msg in app.flashes('notice') %}
+<div class="ui success message">
+        <div class="header">
+            Action succeeded
+        </div>
+        <p>
+        {{msg}}
+        </p>
+    </div>
+{% endfor %}
+ <div class="act-form-container">
+     {{form(form_add)}}
+ </div>
+
+
+<table class="ui striped blue table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Activity Code</th>
+            <th>Activity Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if activities|length == 0 %}
+    <tr>
+        <th rowspan="6" colspan="5" class="table-no-data-found">No Data Found For users</th>
+    </tr>
+    {% else %}
+        {% for act in activities %}
+        <tr>
+            <th>{{act.id}}</th>
+            <th>{{act.codeAct}}</th>
+            <th>{{act.libAct}}</th>
+            <th>
+                <button class="ui button red" id="{{act.id}}" onclick="confirmDelete(id);">
+                    Delete&nbsp;
+                    <i class="trash icon"></i>
+                </button>
+            </th>
+         </tr>
+        {% endfor %}
+    {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function confirmDelete(actId) {
+            const host = window.location.host;
+            const protocole = window.location.protocol
+
+            let confirm = window.confirm('You are going to delete Activity number '+actId+' from database \n Are you sure?');
+            if (confirm == true) {
+                window.location.href = protocole+'//'+host+'/admin/activity/remove/'+actId;
+            }
+            else {
+                return 0;
+            }
+            
+        }
+    </script>
+{% endblock %}
